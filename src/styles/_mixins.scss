@@ -1,0 +1,16 @@
+@mixin box($width, $height, $color: false) {
+  width: $width;
+  height: $height;
+  @if ($color) {
+    background-color: $color;
+  }
+}
+
+@mixin flexbox($direction: false, $justify-content, $align-items) {
+  display: flex;
+  @if ($direction) {
+    flex-direction: $direction;
+  }
+  justify-content: $justify-content;
+  align-items: $align-items;
+}

@@ -1,0 +1,87 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: 0;
+  outline: 0;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+@font-face {
+  font-family: "JetBrains-mono";
+  src: url("/src/assets/fonts/JetBrainsMono-VariableFont_wght.ttf");
+}
+body {
+  font-family: "JetBrains-mono", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background: #100f15;
+}
+
+::selection {
+  background-color: #a4ffaf;
+  color: #100f15;
+}
+
+#container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#ui-container {
+  width: clamp(250px, 90%, 425px);
+  height: 550px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  color: #e6e6ea;
+  letter-spacing: 0.5px;
+}
+#ui-container h3 {
+  text-align: center;
+  padding: 20px 0 25px;
+  color: #838094;
+}
+#ui-container #result-section {
+  width: 100%;
+  height: 70px;
+  background-color: #24232b;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 25px;
+  margin: 0 0 15px;
+}
+#ui-container #result-section #copy-button {
+  background: none;
+  padding: 10px 8px;
+  cursor: pointer;
+  color: #a4ffaf;
+  transition: color 250ms;
+  font-size: 15px;
+}
+#ui-container #result-section #copy-button:hover {
+  color: #fff;
+}
+#ui-container #generate-section {
+  width: 100%;
+  height: 100px;
+  background-color: #24232b;
+  flex-grow: 1;
+}
+
+/*# sourceMappingURL=styles.css.map */
