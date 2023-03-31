@@ -1,3 +1,11 @@
+@import "./variables";
+
+@mixin media($types...) {
+  @for $i from 0 through $types {
+    background: linear-gradient(to right);
+  }
+}
+
 @mixin box($width, $height, $color: false) {
   width: $width;
   height: $height;
@@ -13,4 +21,120 @@
   }
   justify-content: $justify-content;
   align-items: $align-items;
+}
+
+@mixin placeCenter($property: false, $propertyValue) {
+  @if (property) {
+    #{$property}: $propertyValue;
+  }
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin clearAppereance {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+@mixin checkbox($color) {
+  @include clearAppereance;
+  min-width: 17.5px;
+  min-height: 17.5px;
+  cursor: pointer;
+  border: 2px solid $light-gray;
+  position: relative;
+
+  &,
+  &::before {
+    transition: background $transition-duration, opacity $transition-duration;
+  }
+
+  &:hover {
+    border-color: $color;
+  }
+  &::before {
+    content: "";
+    width: 80%;
+    height: 80%;
+    position: absolute;
+    top: 42.5%;
+    left: 44.075%;
+    background-color: $dark-gray;
+    transform-origin: bottom left;
+    transform: translate(-50%, -50%) rotate(10deg);
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0, 43% 62%);
+    opacity: 0;
+  }
+
+  &:checked {
+    background: $color;
+    border-color: $color;
+
+    &::before {
+      opacity: 1;
+    }
+  }
+}
+
+@mixin rangeThumb {
+  @include clearAppereance;
+  height: 23px;
+  width: 23px;
+  background: $light-gray;
+  border-radius: 50%;
+  cursor: pointer;
+  transition-property: background, box-shadow;
+  transition-duration: $transition-duration;
+
+  &:active {
+    background: $light-black;
+    border-color: $green;
+    box-shadow: inset 0 0 0 2px $green;
+  }
+}
+
+@mixin rangebox() {
+  position: relative;
+  width: 100%;
+  height: 30px;
+  user-select: none;
+
+  #charater-length-input {
+    $inputHeight: 6px;
+    @include clearAppereance;
+    background: transparent;
+    width: calc(100% + 22.5px);
+    height: $inputHeight;
+    @include placeCenter(position, absolute);
+    z-index: 1;
+
+    &::-webkit-slider-thumb {
+      @include rangeThumb;
+    }
+    &::-moz-range-thumb {
+      @include rangeThumb;
+    }
+
+    & + #range-progress {
+      width: 100%;
+      height: $inputHeight;
+      background-color: $light-black;
+      @include placeCenter(position, absolute);
+
+      &::-webkit-progress-bar {
+        background: $light-black;
+      }
+      &::-moz-range-progress {
+        background: $light-black;
+      }
+      &::-webkit-progress-value {
+        background: $green;
+      }
+      &::-moz-progress-bar {
+        background: $green;
+      }
+    }
+  }
 }

@@ -43,7 +43,7 @@ body {
 
 #ui-container {
   width: clamp(250px, 90%, 425px);
-  height: 550px;
+  height: 575px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -68,7 +68,8 @@ body {
 }
 #ui-container #result-section #copy-button {
   background: none;
-  padding: 10px 8px;
+  padding: 7px 4.5px;
+  margin-right: -6.5px;
   cursor: pointer;
   color: #a4ffaf;
   transition: color 250ms;
@@ -82,6 +83,186 @@ body {
   height: 100px;
   background-color: #24232b;
   flex-grow: 1;
+  padding: 20px 25px;
+}
+
+.character-length {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.character-length h2 {
+  color: #a4ffaf;
+}
+
+.range-input {
+  position: relative;
+  width: 100%;
+  height: 30px;
+  user-select: none;
+}
+.range-input #charater-length-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: transparent;
+  width: calc(100% + 22.5px);
+  height: 6px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+.range-input #charater-length-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  height: 23px;
+  width: 23px;
+  background: #e6e6ea;
+  border-radius: 50%;
+  cursor: pointer;
+  transition-property: background, box-shadow;
+  transition-duration: 250ms;
+}
+.range-input #charater-length-input::-webkit-slider-thumb:active {
+  background: #18171f;
+  border-color: #a4ffaf;
+  box-shadow: inset 0 0 0 2px #a4ffaf;
+}
+.range-input #charater-length-input::-moz-range-thumb {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  height: 23px;
+  width: 23px;
+  background: #e6e6ea;
+  border-radius: 50%;
+  cursor: pointer;
+  transition-property: background, box-shadow;
+  transition-duration: 250ms;
+}
+.range-input #charater-length-input::-moz-range-thumb:active {
+  background: #18171f;
+  border-color: #a4ffaf;
+  box-shadow: inset 0 0 0 2px #a4ffaf;
+}
+.range-input #charater-length-input + #range-progress {
+  width: 100%;
+  height: 6px;
+  background-color: #18171f;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.range-input #charater-length-input + #range-progress::-webkit-progress-bar {
+  background: #18171f;
+}
+.range-input #charater-length-input + #range-progress::-moz-range-progress {
+  background: #18171f;
+}
+.range-input #charater-length-input + #range-progress::-webkit-progress-value {
+  background: #a4ffaf;
+}
+.range-input #charater-length-input + #range-progress::-moz-progress-bar {
+  background: #a4ffaf;
+}
+
+.password-options {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.password-options fieldset {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+}
+.password-options fieldset label {
+  padding-left: 20px;
+  user-select: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+.password-options fieldset input[type=checkbox] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  min-width: 17.5px;
+  min-height: 17.5px;
+  cursor: pointer;
+  border: 2px solid #e6e6ea;
+  position: relative;
+}
+.password-options fieldset input[type=checkbox], .password-options fieldset input[type=checkbox]::before {
+  transition: background 250ms, opacity 250ms;
+}
+.password-options fieldset input[type=checkbox]:hover {
+  border-color: #a4ffaf;
+}
+.password-options fieldset input[type=checkbox]::before {
+  content: "";
+  width: 80%;
+  height: 80%;
+  position: absolute;
+  top: 42.5%;
+  left: 44.075%;
+  background-color: #24232b;
+  transform-origin: bottom left;
+  transform: translate(-50%, -50%) rotate(10deg);
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0, 43% 62%);
+  opacity: 0;
+}
+.password-options fieldset input[type=checkbox]:checked {
+  background: #a4ffaf;
+  border-color: #a4ffaf;
+}
+.password-options fieldset input[type=checkbox]:checked::before {
+  opacity: 1;
+}
+
+.password-strength {
+  width: 100%;
+  height: fit-content;
+  background-color: #18171f;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 25px;
+}
+.password-strength > span {
+  color: #838094;
+  font-weight: 600;
+  font-size: 15px;
+}
+.password-strength .strength-level {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-height: 20px;
+  width: 130px;
+}
+.password-strength .strength-level span {
+  margin-left: -15px;
+  font-weight: 700;
+  font-size: 20px;
+}
+.password-strength .strength-level ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: fit-content;
+  gap: 7px;
+  list-style-type: none;
+}
+.password-strength .strength-level ul li {
+  width: 9px;
+  height: 25px;
+  border: 2px solid #e6e6ea;
 }
 
 /*# sourceMappingURL=styles.css.map */
