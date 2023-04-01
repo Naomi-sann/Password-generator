@@ -138,3 +138,20 @@
     }
   }
 }
+
+@mixin button($width, $height, $color) {
+  @include box($width, $height);
+  @include flexbox($justify-content: center, $align-items: center);
+  background-color: $green;
+  border: 2px solid $green;
+  color: $dark-gray;
+  font: 700 15px $font-family;
+  transition-property: background-color, color;
+  transition-duration: $transition-duration;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $dark-gray;
+    color: $green;
+  }
+}
