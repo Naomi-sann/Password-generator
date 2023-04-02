@@ -63,6 +63,16 @@ body {
     padding: 0 var(--box-padding);
     margin: 0 0 15px;
 
+    #result {
+      max-width: 80%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      &.empty-password {
+        color: $green;
+      }
+    }
+
     #copy-button {
       background: none;
       padding: 7px 4.5px;
@@ -173,6 +183,10 @@ button#generate {
 @media (max-width: 465px) {
   #ui-container {
     --box-padding: 15px;
+
+    #result-section #copy-button {
+      margin-right: 0;
+    }
 
     #generate-section {
       padding: var(--box-padding);

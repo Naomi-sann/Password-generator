@@ -1,11 +1,14 @@
 {
   "name": "password-generator",
   "version": "1.0.0",
-  "description": "",
+  "description": "Password generator written in typescript",
   "main": "index.js",
   "scripts": {},
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "Password generator",
+    "password"
+  ],
+  "author": "Naomi-san",
   "license": "ISC",
   "devDependencies": {
     "typescript": "^5.0.2"
