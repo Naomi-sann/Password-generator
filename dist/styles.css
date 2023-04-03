@@ -49,7 +49,7 @@ body {
   --box-padding: 25px;
   --full-width: 100%;
   width: clamp(300px, 92.5%, 425px);
-  height: 600px;
+  height: 650px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -95,14 +95,14 @@ body {
 }
 #ui-container #generate-section {
   width: var(--full-width);
-  height: 425px;
+  height: 450px;
   background-color: #24232b;
   min-width: 300px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 20px var(--box-padding);
+  padding: 25px var(--box-padding);
 }
 #ui-container #generate-section > * {
   width: var(--full-width);
@@ -283,9 +283,14 @@ body {
   list-style-type: none;
 }
 .password-strength .strength-level ul li {
+  --active-color: #e6e6ea;
   width: 9px;
   height: 25px;
   border: 2px solid #e6e6ea;
+}
+.password-strength .strength-level ul li.level-active {
+  background-color: var(--active-color);
+  border-color: var(--active-color);
 }
 
 button#generate {

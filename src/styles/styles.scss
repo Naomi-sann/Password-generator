@@ -45,7 +45,7 @@ body {
   --box-padding: 25px;
   --full-width: 100%;
   $min-width: 300px;
-  @include box(clamp(300px, 92.5%, 425px), 600px);
+  @include box(clamp(300px, 92.5%, 425px), 650px);
   @include flexbox(column, space-evenly, center);
   color: $light-gray;
   letter-spacing: 0.5px;
@@ -89,10 +89,10 @@ body {
   }
 
   #generate-section {
-    @include box(var(--full-width), 425px, $dark-gray);
+    @include box(var(--full-width), 450px, $dark-gray);
     min-width: $min-width;
     @include flexbox(column, space-between, center);
-    padding: 20px var(--box-padding);
+    padding: 25px var(--box-padding);
 
     & > * {
       width: var(--full-width);
@@ -162,9 +162,15 @@ body {
       list-style-type: none;
 
       li {
+        --active-color: #e6e6ea;
         width: 9px;
         height: 25px;
         border: 2px solid $light-gray;
+
+        &.level-active {
+          background-color: var(--active-color);
+          border-color: var(--active-color);
+        }
       }
     }
   }
