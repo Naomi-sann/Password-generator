@@ -46,8 +46,9 @@ interface Password extends PasswordProperties {
 enum StrengthLevel {
     empty = 0,
     easy = 1,
-    medium = 2,
-    strong = 3,
+    medium1 = 2,
+    medium2 = 3,
+    strong = 4,
 }
 
 interface Strength {
@@ -93,33 +94,33 @@ class strength implements Strength {
             if (option && !this[levelOption]) {
                 this[levelOption] = true;
                 this.checkedOptionsCount++;
-                this.strengthLevel += 2;
             }
             else if (!option && this[levelOption]) {
                 this[levelOption] = false;
                 this.checkedOptionsCount--;
-                this.strengthLevel -= 2;
             }
         }
 
+        this.strengthLevel = 0;
 
-        if (passwordLength > 4 && passwordLength <= 7 && !this.hasLengthLevel1) {
-            this.hasLengthLevel1 = true;
-            this.strengthLevel++;
+        if (this.checkedOptionsCount === 0) {
+            this.strengthLevel = StrengthLevel.empty;
+            return;
         }
-        else if (passwordLength < 4 && this.hasLengthLevel1) {
-            this.hasLengthLevel1 = false;
-            this.strengthLevel--;
+        if (passwordLength > 7 && this.checkedOptionsCount === 4) {
+            this.strengthLevel = StrengthLevel.strong;
+            return;
         }
-        if (passwordLength > 7 && !this.hasLengthLevel2) {
-            this.hasLengthLevel2 = true;
-            this.strengthLevel += 2;
+        if ((passwordLength > 7 && this.checkedOptionsCount === 3) || (passwordLength > 4 && this.checkedOptionsCount === 4)) {
+            this.strengthLevel = StrengthLevel.medium2;
+            return;
         }
-        else if (passwordLength < 7 && passwordLength >= 4 && this.hasLengthLevel2) {
-            this.hasLengthLevel2 = false;
-            this.strengthLevel -= 2;
+        if ((passwordLength > 4 && this.checkedOptionsCount === 3) || (passwordLength > 10 && this.checkedOptionsCount === 2)) {
+            this.strengthLevel = StrengthLevel.medium1;
+            return;
         }
-        console.log(Math.ceil(this.strengthLevel / 3.5));
+
+        this.strengthLevel = StrengthLevel.easy;
     }
 }
 
@@ -191,15 +192,36 @@ class password extends strength implements Password {
 
 
 const mainPassword: password = new password();
-console.log(mainPassword);
 
 function showStrength() {
-    for (let i = 0; i < 4; i++) {
+    let strengthColor: string = "unset";
+    let levelDifficulty: "EMPTY" | "EASY" | "MEDIUM" | "STRONG" = "EMPTY";
+
+    if (mainPassword.strengthLevel === 2 || mainPassword.strengthLevel === 3) {
+        strengthColor = "#f8ce60";
+        levelDifficulty = "MEDIUM";
+    }
+    else if (mainPassword.strengthLevel === 4) {
+        strengthColor = "#a4ffaf";
+        levelDifficulty = "STRONG";
+    }
+    else if (mainPassword.strengthLevel === 1) {
+        strengthColor = "gray";
+        levelDifficulty = "EASY";
+    }
+
+    const listItems = <HTMLCollectionOf<HTMLLIElement>>strengthLevel.children;
+
+    for (let i = 0; i < listItems.length; i++) {
         strengthLevel.children.item(i)?.classList.remove('level-active');
+
+        listItems.item(i)?.style.setProperty('--active-color', strengthColor);
     }
     for (let i = 0; i < mainPassword.strengthLevel; i++) {
-        strengthLevel.children.item(i)?.classList.add("level-active");
+        listItems.item(i > listItems.length - 1 ? 3 : i)?.classList.add("level-active");
     }
+
+    strengthLevelText.innerText = levelDifficulty;
 }
 
 function handleInput(e) {

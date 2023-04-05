@@ -16,8 +16,9 @@ var StrengthLevel;
 (function (StrengthLevel) {
     StrengthLevel[StrengthLevel["empty"] = 0] = "empty";
     StrengthLevel[StrengthLevel["easy"] = 1] = "easy";
-    StrengthLevel[StrengthLevel["medium"] = 2] = "medium";
-    StrengthLevel[StrengthLevel["strong"] = 3] = "strong";
+    StrengthLevel[StrengthLevel["medium1"] = 2] = "medium1";
+    StrengthLevel[StrengthLevel["medium2"] = 3] = "medium2";
+    StrengthLevel[StrengthLevel["strong"] = 4] = "strong";
 })(StrengthLevel || (StrengthLevel = {}));
 class strength {
     constructor() {
@@ -37,31 +38,30 @@ class strength {
             if (option && !this[levelOption]) {
                 this[levelOption] = true;
                 this.checkedOptionsCount++;
-                this.strengthLevel += 2;
             }
             else if (!option && this[levelOption]) {
                 this[levelOption] = false;
                 this.checkedOptionsCount--;
-                this.strengthLevel -= 2;
             }
         }
-        if (passwordLength > 4 && passwordLength <= 7 && !this.hasLengthLevel1) {
-            this.hasLengthLevel1 = true;
-            this.strengthLevel++;
+        this.strengthLevel = 0;
+        if (this.checkedOptionsCount === 0) {
+            this.strengthLevel = StrengthLevel.empty;
+            return;
         }
-        else if (passwordLength < 4 && this.hasLengthLevel1) {
-            this.hasLengthLevel1 = false;
-            this.strengthLevel--;
+        if (passwordLength > 7 && this.checkedOptionsCount === 4) {
+            this.strengthLevel = StrengthLevel.strong;
+            return;
         }
-        if (passwordLength > 7 && !this.hasLengthLevel2) {
-            this.hasLengthLevel2 = true;
-            this.strengthLevel += 2;
+        if ((passwordLength > 7 && this.checkedOptionsCount === 3) || (passwordLength > 4 && this.checkedOptionsCount === 4)) {
+            this.strengthLevel = StrengthLevel.medium2;
+            return;
         }
-        else if (passwordLength < 7 && passwordLength >= 4 && this.hasLengthLevel2) {
-            this.hasLengthLevel2 = false;
-            this.strengthLevel -= 2;
+        if ((passwordLength > 4 && this.checkedOptionsCount === 3) || (passwordLength > 10 && this.checkedOptionsCount === 2)) {
+            this.strengthLevel = StrengthLevel.medium1;
+            return;
         }
-        console.log(Math.ceil(this.strengthLevel / 3.5));
+        this.strengthLevel = StrengthLevel.easy;
     }
 }
 class password extends strength {
@@ -107,15 +107,31 @@ class password extends strength {
     }
 }
 const mainPassword = new password();
-console.log(mainPassword);
 function showStrength() {
-    var _a, _b;
-    for (let i = 0; i < 4; i++) {
+    var _a, _b, _c;
+    let strengthColor = "unset";
+    let levelDifficulty = "EMPTY";
+    if (mainPassword.strengthLevel === 2 || mainPassword.strengthLevel === 3) {
+        strengthColor = "#f8ce60";
+        levelDifficulty = "MEDIUM";
+    }
+    else if (mainPassword.strengthLevel === 4) {
+        strengthColor = "#a4ffaf";
+        levelDifficulty = "STRONG";
+    }
+    else if (mainPassword.strengthLevel === 1) {
+        strengthColor = "gray";
+        levelDifficulty = "EASY";
+    }
+    const listItems = strengthLevel.children;
+    for (let i = 0; i < listItems.length; i++) {
         (_a = strengthLevel.children.item(i)) === null || _a === void 0 ? void 0 : _a.classList.remove('level-active');
+        (_b = listItems.item(i)) === null || _b === void 0 ? void 0 : _b.style.setProperty('--active-color', strengthColor);
     }
     for (let i = 0; i < mainPassword.strengthLevel; i++) {
-        (_b = strengthLevel.children.item(i)) === null || _b === void 0 ? void 0 : _b.classList.add("level-active");
+        (_c = listItems.item(i > listItems.length - 1 ? 3 : i)) === null || _c === void 0 ? void 0 : _c.classList.add("level-active");
     }
+    strengthLevelText.innerText = levelDifficulty;
 }
 function handleInput(e) {
     progressBar.value = e.target.value;
