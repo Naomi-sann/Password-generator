@@ -1,9 +1,5 @@
 declare const tippy: any;
 
-function toArray<T>(obj: Iterable<T>): T[] {
-    return [...obj];
-}
-
 const [copyTippy] = tippy('#copy-button', {
     content: "Copy",
     delay: [300, 600],
