@@ -1,7 +1,4 @@
 "use strict";
-function toArray(obj) {
-  return [...obj];
-}
 const [copyTippy] = tippy("#copy-button", {
   content: "Copy",
   delay: [300, 600],
