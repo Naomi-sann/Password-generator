@@ -2,6 +2,10 @@
   font-family: "JetBrains-mono";
   src: url("./JetBrainsMono-VariableFont_wght.ttf");
 }
+@font-face {
+  font-family: "JetBrains-mono";
+  src: url("./JetBrainsMono-VariableFont_wght.ttf");
+}
 *,
 *::before,
 *::after {
@@ -24,9 +28,7 @@
   }
 }
 body {
-  font-family: "JetBrains-mono", system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: "JetBrains-mono", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   background: #100f15;
 }
 
@@ -209,7 +211,7 @@ body {
   font-size: 14px;
   font-weight: 500;
 }
-.password-options fieldset input[type="checkbox"] {
+.password-options fieldset input[type=checkbox] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -219,14 +221,13 @@ body {
   border: 2px solid #e6e6ea;
   position: relative;
 }
-.password-options fieldset input[type="checkbox"],
-.password-options fieldset input[type="checkbox"]::before {
+.password-options fieldset input[type=checkbox], .password-options fieldset input[type=checkbox]::before {
   transition: background 250ms, opacity 250ms;
 }
-.password-options fieldset input[type="checkbox"]:hover {
+.password-options fieldset input[type=checkbox]:hover {
   border-color: #a4ffaf;
 }
-.password-options fieldset input[type="checkbox"]::before {
+.password-options fieldset input[type=checkbox]::before {
   content: "";
   width: 80%;
   height: 80%;
@@ -239,11 +240,11 @@ body {
   clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0, 43% 62%);
   opacity: 0;
 }
-.password-options fieldset input[type="checkbox"]:checked {
+.password-options fieldset input[type=checkbox]:checked {
   background: #a4ffaf;
   border-color: #a4ffaf;
 }
-.password-options fieldset input[type="checkbox"]:checked::before {
+.password-options fieldset input[type=checkbox]:checked::before {
   opacity: 1;
 }
 
@@ -301,9 +302,7 @@ button#generate {
   background-color: #a4ffaf;
   border: 2px solid #a4ffaf;
   color: #24232b;
-  font: 700 15px "JetBrains-mono", system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
-    sans-serif;
+  font: 700 15px "JetBrains-mono", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   transition-property: background-color, color;
   transition-duration: 250ms;
   cursor: pointer;
@@ -332,3 +331,5 @@ button#generate svg {
     padding: 17.5px;
   }
 }
+
+/*# sourceMappingURL=styles.css.map */
